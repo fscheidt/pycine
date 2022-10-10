@@ -16,7 +16,10 @@ Permite restaurar o ambiente virtual em outras máquinas/ambientes de desenvolvi
 ```bash
 cd pycine
 # quem fez clone:
-python3 -m venv env
+# python3 -m venv env (root)
+
+python3 -m venv env --without-pip --system-site-packages
+
 source env/bin/activate
 pip install -r requirements.txt
 ```
