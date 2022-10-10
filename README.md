@@ -11,9 +11,12 @@ pip freeze > requirements.txt
 ```
 
 Permite restaurar o ambiente virtual em outras máquinas/ambientes de desenvolvimento:
+# git clone https://github.com/fscheidt/pycine
 
 ```bash
 cd pycine
+# quem fez clone:
+python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 ```

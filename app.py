@@ -3,6 +3,8 @@ from datetime import datetime
 import requests
 import json
 
+# git clone https://github.com/fscheidt/pycine
+# fastApi
 app = Flask(__name__)
 
 @app.route("/")
