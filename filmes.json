@@ -1,18 +1,22 @@
 [
     {
         "id": 1000,
-        "title": "Avatar"
+        "title": "Avatar",
+        "genre": "aventura"
     },
     {
         "id": 2000,
-        "title": "Matrix"
+        "title": "Matrix",
+        "genre": "ficção"
     },
     {
         "id": 2001,
-        "title": "Matrix reload"
+        "title": "Matrix reload",
+        "genre": "ficção"
     },
     {
         "id": 3000,
-        "title": "Titanic"
+        "title": "Titanic",
+        "genre": "drama"
     }
 ]

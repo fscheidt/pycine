@@ -15,8 +15,8 @@ async def get_movie(id: int):
     return {}
     # return {"id": id, "title": "Avatar"}
 
-@app.get("/find/{title}")
-async def find(title: str):
+@app.get("/find/{title}/{genre}")
+async def find(title: str, genre):
     import json
     data = json.load(open('filmes.json'))
     encontrou = []
