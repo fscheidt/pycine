@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 app = FastAPI()
+
 # fornecido um id, retorno o 
 # json do filme
 # /movie/1
