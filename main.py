@@ -1,6 +1,19 @@
 from fastapi import FastAPI
-
+from fastapi.middleware.cors import (
+     CORSMiddleware
+)
 app = FastAPI()
+origins = [
+    "http://localhost",
+    "http://localhost:5173",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # fornecido um id, retorno o 
 # json do filme
@@ -14,7 +27,12 @@ async def get_movie(id: int):
         if filme['id'] == id:
             return filme
     return {}
-    # return {"id": id, "title": "Avatar"}
+
+@app.get("/movies")
+async def get_movies():
+    import json
+    data = json.load(open('filmes.json'))
+    return data
 
 @app.get("/find/{title}/{genre}")
 async def find(title: str, genre):
