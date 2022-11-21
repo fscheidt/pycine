@@ -50,7 +50,7 @@ async def find(title: str, genre):
 async def home():
     return {"msg": "Hello"}
 
-
+# rodar o fastapi:
 # uvicorn main:app --reload
 
 # pip install -r requirements.txt

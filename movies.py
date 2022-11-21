@@ -3,13 +3,6 @@ from pydantic import BaseModel
 from typing import Union
 
 app = FastAPI()
-# Fazer o mapeamento ORM
-# Mapeamento Movie
-# Atributos:
-# - id
-# - title
-# - year 
-# - genre
 
 class Movie(BaseModel):
     # todos os campos sao required:
@@ -57,15 +50,3 @@ async def get_movie_by_id():
 
 
 # uvicorn movies:app --reload
-
-
-# Exercício:
-# funcionarios.py
-# mapear a entidade funcionario
-# - nome, admissao, salario
-# - /funcionarios (listar)
-# - /funcionarios (salario > 6000)
-
-# Cadastro de funcionario usando POST:
-# app.post /funcionario/new 
-# testar via docs
