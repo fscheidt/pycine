@@ -4,7 +4,6 @@ no caso de ocorrer o erro "ModuleNotFound", abrir o terminal (na pasta do projet
 export PYTHONPATH=.
 
 """
-from tmdb.models import TMDBMovie
 from tmdb.api_utils import (
     RequestApi, MovieUtils
 )

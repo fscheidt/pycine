@@ -1,12 +1,12 @@
 from enum import Enum
 
 class Genre(Enum):
-    Drama: 18
-    Comedia: 35
-    Scifi: 878
+    Drama = 18
+    Comedia = 35
+    Scifi = 878
 
 # TODO: id, name, imagem, birth_date
-class TMDBArtista:
+class Artista:
     pass
 
 class TMDBMovie:
