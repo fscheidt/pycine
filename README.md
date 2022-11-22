@@ -14,6 +14,8 @@ Permite restaurar o ambiente virtual em outras máquinas/ambientes de desenvolvi
 
 ---
 
+## Clonar projeto pycine
+
 ### git clone https://github.com/fscheidt/pycine
 
 ```bash
@@ -27,7 +29,16 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-## ModuleNotFound
+## Atualizar código do vscode com o código no git
+
+**Atenção!!!** Esse comando apagará qualquer mudança no seu código e substituirá pelo código que está no github:
+
+```bash
+git fetch
+git reset --hard origin/master
+```
+
+## Erro **ModuleNotFound**
 
 Se ocorrer o erro "ModuleNotFound", abrir o terminal (na mesma pasta do projeto) e rodar o comando:
 
@@ -39,6 +50,12 @@ export PYTHONPATH=.
 
 ## ➭ 21/11
 
+### Atividade
+Objetivo: Implementar o endpoint para encontrar artistas pelo nome fornecido como parametro na url.
+- Retorna uma lista de artistas.
+- Exemplo de endpoint na nossa API:
+
+> localhost:8080/artista/arnold
 
 
 ---

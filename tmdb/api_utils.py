@@ -33,9 +33,8 @@ class RequestApi:
         endpoint = f'https://api.themoviedb.org/3/person/{person_id}?api_key={key}'
         r = requests.get(endpoint)
         data = r.json()
-        results = data['results']
+        results = data
         return results
-
 
 class MovieUtils:
     """

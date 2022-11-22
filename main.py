@@ -45,7 +45,17 @@ async def get_movies():
     movies = MovieUtils.get_movies(Genre.Scifi.value)
     return movies
 
-# /artista/arnold sch
+@app.get("/artista/id/{id}")
+async def get_artista(id):
+    artista = RequestApi.get_artista(id)
+    return artista
+
+# Objetivo: Implementar o endpoint para 
+# encontrar artistas pelo nome fornecido como 
+# parametro na url.
+# - Retorna uma lista de artistas.
+# - Exemplo de endpoint na nossa API:
+# localhost:8080/artista/arnold
 
 @app.get("/find/{title}/{genre}")
 async def find(title: str, genre):
