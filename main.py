@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import (
      CORSMiddleware
 )
+# Precisamos importar MovieUtils e Genre:
+from tmdb.models import Genre
+from tmdb.api_utils import (
+    RequestApi, MovieUtils
+)
 app = FastAPI()
 origins = [
     "http://localhost",
@@ -28,11 +33,19 @@ async def get_movie(id: int):
             return filme
     return {}
 
-@app.get("/movies")
-async def get_movies():
+@app.get("/movies_json")
+async def get_movies_json():
     import json
     data = json.load(open('filmes.json'))
     return data
+
+@app.get("/movies")
+async def get_movies():
+    # chamar a classe MovieUtils para consultar TMDB
+    movies = MovieUtils.get_movies(Genre.Scifi.value)
+    return movies
+
+# /artista/arnold sch
 
 @app.get("/find/{title}/{genre}")
 async def find(title: str, genre):
