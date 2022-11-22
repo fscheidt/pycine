@@ -14,19 +14,30 @@ Permite restaurar o ambiente virtual em outras máquinas/ambientes de desenvolvi
 
 ---
 
-## Clonar projeto pycine
+## Clonar o projeto pycine
 
-### git clone https://github.com/fscheidt/pycine
 
 ```bash
+
+git clone https://github.com/fscheidt/pycine
+
 cd pycine
-# quem fez clone:
-# python3 -m venv env (root)
 
+# CRIAR O VIRTUAL ENV:
+# OPÇÃO 1 (máquina do LAB):
 python3 -m venv env --without-pip --system-site-packages
+# OPÇÃO 2 (máquina pessoal):
+python3 -m venv env
 
+# Ativar o ambiente virtual:
 source env/bin/activate
+
+# instalar dependências
 pip install -r requirements.txt
+
+# iniciar o vscode
+code .
+
 ```
 
 ## Atualizar código do vscode com o código no git
