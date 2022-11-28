@@ -52,8 +52,7 @@ class MovieUtils:
 
     @staticmethod
     def get_image_path(poster_path):
-        # TODO: ver url 
-        return f"https://theimdb/{poster_path}"
+        return f"https://image.tmdb.org/t/p/w185{poster_path}"
 
     @staticmethod
     def get_movies(genre: int):
