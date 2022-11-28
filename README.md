@@ -1,6 +1,7 @@
-# Configuração do ambiente
+# Pycine project + FastApi
 
-- [Setup flask e virtual env](https://github.com/fscheidt/dev/blob/master/flask/setup-projeto-flask.md)
+- [Página Web 4](https://github.com/fscheidt/web4-22)
+- [appcine (svelte)](https://github.com/fscheidt/appcine)
 
 ## Requirements.txt
 
