@@ -40,18 +40,37 @@ class MovieUtils:
     """
     classe utilitaria para ser usada no fastapi
     """
+    @staticmethod
+    def get_genres(genre_ids):
+        # TODO: gambiarra - precisa busca no tmdb todos os
+        # genres... mas por enquanto...
+        ids = [e.value for e in Genre]
+        genres_str = [
+            Genre(g).name for g in genre_ids if g in ids
+            ]
+        return " | ".join(genres_str)
+
+    @staticmethod
+    def get_image_path(poster_path):
+        # TODO: ver url 
+        return f"https://theimdb/{poster_path}"
 
     @staticmethod
     def get_movies(genre: int):
         # obter o titulo (original_title)
         # percorremos a lista de filmes (results)
-
         results = RequestApi.get_movie_popular_by_genre(genre)
         movies = []  # lista que armazena os filmes
         for movie in results:
             m = TMDBMovie(
                 movie['id'],
                 movie['original_title'],
+                genres=MovieUtils.get_genres(
+                    movie['genre_ids']
+                ),
+                poster_path=MovieUtils.get_image_path(
+                    movie['poster_path']
+                )
             )
             movies.append(m)
             # title = movie['original_title']
