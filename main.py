@@ -33,6 +33,8 @@ async def get_movie(id: int):
             return filme
     return {}
 
+# TODO: get_genres
+
 @app.get("/movies_json")
 async def get_movies_json():
     import json
@@ -55,7 +57,7 @@ async def get_artista(id):
 # parametro na url.
 # - Retorna uma lista de artistas.
 # - Exemplo de endpoint na nossa API:
-# localhost:8080/artista/arnold
+# /artista/name/arnold
 
 @app.get("/find/{title}/{genre}")
 async def find(title: str, genre):

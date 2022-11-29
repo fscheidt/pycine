@@ -15,6 +15,11 @@ class RequestApi:
         print('[ok] from RequestApi')
 
     @staticmethod
+    def get_genres():
+        # TODO: load data/genres.json
+        pass
+
+    @staticmethod
     def get_movie_popular_by_genre(genre: int):
         endpoint = f'https://api.themoviedb.org/3/discover/movie/?api_key={key}&certification_country=US&certification=R&sort_by=vote_count.desc&with_genres={genre}'
         r = requests.get(endpoint)
