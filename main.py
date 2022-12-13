@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import (
      CORSMiddleware
 )
+from fastapi import Depends, HTTPException
+from sqlalchemy.orm import Session
+
 # Precisamos importar MovieUtils e Genre:
 from tmdb.models import Genre
 from tmdb.api_utils import (
@@ -20,6 +23,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from sqlalchemy.orm import Session
+
+import crud, models, schemas
+from database import SessionLocal, engine
+
+# todo: testar para ver se o banco nao esta sendo 
+# apagado toda vez que inicia o fastapi
+models.Base.metadata.create_all(bind=engine)
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 from pydantic import BaseModel
 
 # instalar sqlAlchemy para ORM
@@ -30,8 +51,23 @@ class User(BaseModel):
     password: str
 
 @app.post("/user/create")
-def create_user(user: User):
-    # TODO: salvar no BD o usuario
+def create_user(user: User, db: Session = Depends(get_db)):
+    # verifica se ja nao um usuario com este email
+
+    # db = get_db()
+    db_user = crud.get_user_by_email(db, email=user.email)
+    if db_user:
+        raise HTTPException(
+            status_code=400, 
+            detail="Email already registered"
+        )
+    # faz o insert no banco
+    status = crud.create_user(db=db, user=user)
+    print(status)
+    return status
+
+
+
     print(user)
     return "Usuario criado com sucesso"
 

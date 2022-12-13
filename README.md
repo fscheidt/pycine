@@ -65,7 +65,7 @@ export PYTHONPATH=.
 - Para conversao das classes em tabelas usar o 
 ORM sqlalchemy:
 
-```
+```bash
 pip install sqlalchemy
 ```
 
