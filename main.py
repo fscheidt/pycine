@@ -20,6 +20,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from pydantic import BaseModel
+
+# instalar sqlAlchemy para ORM
+# pip install sqlalchemy
+class User(BaseModel):
+    name: str
+    email: str
+    password: str
+
+@app.post("/user/create")
+def create_user(user: User):
+    # TODO: salvar no BD o usuario
+    print(user)
+    return "Usuario criado com sucesso"
+
 # fornecido um id, retorno o 
 # json do filme
 # /movie/1

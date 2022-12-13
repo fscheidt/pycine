@@ -58,6 +58,20 @@ Se ocorrer o erro "ModuleNotFound", abrir o terminal (na mesma pasta do projeto)
 export PYTHONPATH=.
 ```
 
+## ORM - Mapeamento Classe para Tabela
+
+- https://fastapi.tiangolo.com/tutorial/sql-databases/
+
+- Para conversao das classes em tabelas usar o 
+ORM sqlalchemy:
+
+```
+pip install sqlalchemy
+```
+
+
+
+
 ---
 
 ## ➭ 21/11
