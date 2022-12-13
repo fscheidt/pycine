@@ -75,7 +75,14 @@ async def get_movies():
 @app.get("/artista/id/{id}")
 async def get_artista(id):
     artista = RequestApi.get_artista(id)
-    return artista
+    if "name" not in artista: 
+        raise HTTPException(status_code=404, detail="No person found with id = {id}")
+    return {
+        "name": artista['name'],
+        "id": artista['id'],
+        "popularity": artista['popularity'],
+        "biography": artista['biography'],
+    }
 
 # Objetivo: Implementar o endpoint para 
 # encontrar artistas pelo nome fornecido como 
