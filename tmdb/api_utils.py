@@ -1,5 +1,7 @@
 import requests
 from tmdb.models import TMDBMovie, Genre
+import json
+from service import Service
 
 key = 'd1da20fbfa65312b857fb7b517bf855c'
 
@@ -13,11 +15,6 @@ class RequestApi:
     @staticmethod
     def test():
         print('[ok] from RequestApi')
-
-    @staticmethod
-    def get_genres():
-        # TODO: load data/genres.json
-        pass
 
     @staticmethod
     def get_movie_popular_by_genre(genre: int):
@@ -47,13 +44,9 @@ class MovieUtils:
     """
     @staticmethod
     def get_genres(genre_ids):
-        # TODO: gambiarra - precisa busca no tmdb todos os
-        # genres... mas por enquanto...
-        ids = [e.value for e in Genre]
-        genres_str = [
-            Genre(g).name for g in genre_ids if g in ids
-            ]
-        return " | ".join(genres_str)
+        genres = Service.get_genres()
+        genres_names = [g['name'] for g in genres if g['id'] in genre_ids]
+        return " | ".join(genres_names)
 
     @staticmethod
     def get_image_path(poster_path):

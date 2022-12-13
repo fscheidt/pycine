@@ -12,6 +12,8 @@ import crud, models
 from schemas import UserModel
 from database import SessionLocal, engine
 
+from service import Service
+
 # Importar MovieUtils e Genre para usar na api do TMDB
 from tmdb.models import Genre
 from tmdb.api_utils import (
@@ -65,6 +67,10 @@ def create_user(user: UserModel, db: Session = Depends(get_db)):
 # =============================
 # MOVIE (tmdb)
 # =============================
+
+@app.get("/genres")
+async def get_genres():
+    return Service.get_genres()
 
 @app.get("/movies")
 async def get_movies():
