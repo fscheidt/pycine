@@ -4,13 +4,22 @@ from fastapi.middleware.cors import (
 )
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from sqlalchemy.orm import Session
 
-# Precisamos importar MovieUtils e Genre:
+# Importa classes para persistencia dos dados no SQLite
+import crud, models
+from schemas import UserModel
+from database import SessionLocal, engine
+
+# Importar MovieUtils e Genre para usar na api do TMDB
 from tmdb.models import Genre
 from tmdb.api_utils import (
     RequestApi, MovieUtils
 )
 app = FastAPI()
+
+# habilita CORS (permite que o Svelte acesse o fastapi)
 origins = [
     "http://localhost",
     "http://localhost:5173",
@@ -23,15 +32,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from sqlalchemy.orm import Session
-
-import crud, models, schemas
-from database import SessionLocal, engine
-
 # todo: testar para ver se o banco nao esta sendo 
 # apagado toda vez que inicia o fastapi
 models.Base.metadata.create_all(bind=engine)
-
 
 def get_db():
     db = SessionLocal()
@@ -40,21 +43,13 @@ def get_db():
     finally:
         db.close()
 
-
-from pydantic import BaseModel
-
-# instalar sqlAlchemy para ORM
-# pip install sqlalchemy
-class User(BaseModel):
-    name: str
-    email: str
-    password: str
+# =============================
+# USER (sqlite)
+# =============================
 
 @app.post("/user/create")
-def create_user(user: User, db: Session = Depends(get_db)):
+def create_user(user: UserModel, db: Session = Depends(get_db)):
     # verifica se ja nao um usuario com este email
-
-    # db = get_db()
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(
@@ -62,35 +57,14 @@ def create_user(user: User, db: Session = Depends(get_db)):
             detail="Email already registered"
         )
     # faz o insert no banco
-    status = crud.create_user(db=db, user=user)
-    print(status)
-    return status
+    new_user = crud.create_user(db=db, user=user)
+    # print(new_user)
+    return new_user
 
 
-
-    print(user)
-    return "Usuario criado com sucesso"
-
-# fornecido um id, retorno o 
-# json do filme
-# /movie/1
-@app.get("/movie/{id}")
-async def get_movie(id: int):
-    import json
-    # lista de dictionary
-    data = json.load(open('filmes.json'))
-    for filme in data:
-        if filme['id'] == id:
-            return filme
-    return {}
-
-# TODO: get_genres
-
-@app.get("/movies_json")
-async def get_movies_json():
-    import json
-    data = json.load(open('filmes.json'))
-    return data
+# =============================
+# MOVIE (tmdb)
+# =============================
 
 @app.get("/movies")
 async def get_movies():
@@ -124,7 +98,7 @@ async def find(title: str, genre):
 
 @app.get("/")  # HTTP GET
 async def home():
-    return {"msg": "Hello"}
+    return {"msg": "pycine back-end"}
 
 # rodar o fastapi:
 # uvicorn main:app --reload

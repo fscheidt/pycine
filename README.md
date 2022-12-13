@@ -17,9 +17,7 @@ Permite restaurar o ambiente virtual em outras máquinas/ambientes de desenvolvi
 
 ## Clonar o projeto pycine
 
-
 ```bash
-
 git clone https://github.com/fscheidt/pycine
 
 cd pycine
@@ -38,7 +36,6 @@ pip install -r requirements.txt
 
 # iniciar o vscode
 code .
-
 ```
 
 ## Atualizar código do vscode com o código no git
@@ -60,17 +57,12 @@ export PYTHONPATH=.
 
 ## ORM - Mapeamento Classe para Tabela
 
-- https://fastapi.tiangolo.com/tutorial/sql-databases/
-
-- Para conversao das classes em tabelas usar o 
-ORM sqlalchemy:
+Para conversão das classes em tabelas usar o ORM sqlalchemy:
+- [Configuração do SQLite](https://fastapi.tiangolo.com/tutorial/sql-databases/)
 
 ```bash
 pip install sqlalchemy
 ```
-
-
-
 
 ---
 
